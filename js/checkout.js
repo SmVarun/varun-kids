@@ -6,7 +6,7 @@
 
 // ---- YOUR RAZORPAY KEY ID ----
 // Sign up free at https://razorpay.com → Settings → API Keys
-const RAZORPAY_KEY_ID = "YOUR_RAZORPAY_KEY_ID"; // e.g. "rzp_test_xxxxxxxxxx"
+const RAZORPAY_KEY_ID = "rzp_test_SUH83pbxKtbE58"; // e.g. "rzp_test_xxxxxxxxxx"
 
 // ---- Load order summary sidebar ----
 function loadCheckoutSummary() {
