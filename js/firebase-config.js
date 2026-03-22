@@ -10,12 +10,12 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebas
 // Go to: https://console.firebase.google.com
 // Project Settings → Your apps → SDK setup and configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDg6IBD-uqRsINts4NMIDO6QAd9arjt6Yo"
+authDomain: "varun-kids.firebaseapp.com"
+projectId: "varun-kids"
+storageBucket: "varun-kids.firebasestorage.app"
+messagingSenderId: "544835362918"
+appId: "1:544835362918:web:954a2cb9f5580874928da7"
 };
 // --------------------------------------------------------------
 
