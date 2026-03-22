@@ -10,12 +10,12 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebas
 // Go to: https://console.firebase.google.com
 // Project Settings → Your apps → SDK setup and configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDg6IBD-uqRsINts4NMIDO6QAd9arjt6Yo",
-  authDomain: "varun-kids.firebaseapp.com",
-  projectId: "varun-kids",
-  storageBucket: "varun-kids.firebasestorage.app",
-  messagingSenderId: "544835362918",
-  appId: "1:544835362918:web:954a2cb9f5580874928da7"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 // --------------------------------------------------------------
 
@@ -28,17 +28,21 @@ export const db = getFirestore(app);
 /* ============================================================
    FIRESTORE SETUP GUIDE
    ============================================================
-   1. Create a Firebase project at https://console.firebase.google.com
-   2. Enable Firestore Database (Start in test mode for development)
-   3. Create a "products" collection with documents like:
-      {
-        name: "Classic Linen Shirt",
-        price: 1299,
-        mrp: 1999,
-        image: "https://...",
-        description: "Breathable linen fabric...",
-        category: "Men",
-        brand: "Varun Studio"
-      }
-   4. Replace the firebaseConfig above with your actual config
+   Firestore Security Rules (paste in Firebase Console → Firestore → Rules):
+
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       // Anyone can read products
+       match /products/{doc} {
+         allow read: if true;
+         allow write: if false; // Only admin via Firebase Console
+       }
+       // Anyone can create an order (checkout), only admin can read/update
+       match /orders/{doc} {
+         allow create: if true;
+         allow read, update: if false; // Manage via Firebase Console
+       }
+     }
+   }
    ============================================================ */
