@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout – Varun</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="index.html">
+          <span class="logo-text">VARUN</span>
+          <span class="logo-tag">Style That Speaks</span>
+        </a>
+      </div>
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CHECKOUT SECTION -->
+  <section class="checkout-section">
+    <div class="container">
+      <h1 class="page-title">Checkout</h1>
+
+      <!-- Steps Indicator -->
+      <div class="checkout-steps">
+        <div class="step active" id="step1Indicator">
+          <span class="step-num">1</span>
+          <span class="step-label">Delivery</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="step2Indicator">
+          <span class="step-num">2</span>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="step3Indicator">
+          <span class="step-num">3</span>
+          <span class="step-label">Confirm</span>
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+        <!-- LEFT: Form -->
+        <div class="checkout-form-col">
+
+          <!-- Step 1: Delivery -->
+          <div class="checkout-card" id="deliveryStep">
+            <h2>Delivery Details</h2>
+            <div class="form-grid">
+              <div class="form-group full">
+                <label>Full Name *</label>
+                <input type="text" id="fullName" placeholder="Rahul Sharma" />
+                <span class="field-err" id="nameErr"></span>
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="phone" placeholder="9876543210" maxlength="10" />
+                <span class="field-err" id="phoneErr"></span>
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="rahul@email.com" />
+              </div>
+              <div class="form-group full">
+                <label>Pincode *</label>
+                <input type="text" id="pincode" placeholder="560001" maxlength="6" />
+                <span class="field-err" id="pincodeErr"></span>
+              </div>
+              <div class="form-group full">
+                <label>Full Address *</label>
+                <textarea id="address" rows="3" placeholder="House / Flat no., Street, Area"></textarea>
+                <span class="field-err" id="addressErr"></span>
+              </div>
+              <div class="form-group">
+                <label>City *</label>
+                <input type="text" id="city" placeholder="Bengaluru" />
+                <span class="field-err" id="cityErr"></span>
+              </div>
+              <div class="form-group">
+                <label>State *</label>
+                <select id="state">
+                  <option value="">Select State</option>
+                  <option>Karnataka</option>
+                  <option>Maharashtra</option>
+                  <option>Delhi</option>
+                  <option>Tamil Nadu</option>
+                  <option>Telangana</option>
+                  <option>West Bengal</option>
+                  <option>Rajasthan</option>
+                  <option>Gujarat</option>
+                  <option>Other</option>
+                </select>
+                <span class="field-err" id="stateErr"></span>
+              </div>
+            </div>
+            <button class="btn-primary" onclick="proceedToPayment()">Continue to Payment →</button>
+          </div>
+
+          <!-- Step 2: Payment -->
+          <div class="checkout-card" id="paymentStep" style="display:none">
+            <h2>Payment Method</h2>
+            <div class="payment-options">
+              <label class="payment-option">
+                <input type="radio" name="payment" value="upi" checked />
+                <span class="payment-icon">📱</span>
+                <div>
+                  <strong>UPI</strong>
+                  <small>Pay via GPay, PhonePe, Paytm</small>
+                </div>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="card" />
+                <span class="payment-icon">💳</span>
+                <div>
+                  <strong>Credit / Debit Card</strong>
+                  <small>Visa, Mastercard, RuPay</small>
+                </div>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="netbanking" />
+                <span class="payment-icon">🏦</span>
+                <div>
+                  <strong>Net Banking</strong>
+                  <small>All major banks supported</small>
+                </div>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="cod" />
+                <span class="payment-icon">💵</span>
+                <div>
+                  <strong>Cash on Delivery</strong>
+                  <small>Pay when you receive</small>
+                </div>
+              </label>
+            </div>
+            <div class="step-btns">
+              <button class="btn-secondary" onclick="goBackToDelivery()">← Back</button>
+              <button class="btn-primary" onclick="placeOrder()">Place Order →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Confirmation -->
+          <div class="checkout-card success-card" id="confirmStep" style="display:none">
+            <div class="success-animation">
+              <div class="success-check">✓</div>
+            </div>
+            <h2>Order Placed!</h2>
+            <p>Thank you, <strong id="confirmName"></strong>! Your order has been placed successfully.</p>
+            <p class="order-id">Order ID: <strong id="orderId"></strong></p>
+            <p>A confirmation will be sent to your phone/email. Expected delivery in <strong>3–5 business days</strong>.</p>
+            <a href="index.html" class="btn-primary" style="margin-top:1.5rem;display:inline-block">Continue Shopping</a>
+          </div>
+        </div>
+
+        <!-- RIGHT: Order Summary -->
+        <div class="checkout-summary" id="checkoutSummary">
+          <h2>Order Summary</h2>
+          <div id="checkoutItemsList" class="checkout-items-list"></div>
+          <div class="summary-divider"></div>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="coSubtotal">₹0</span>
+          </div>
+          <div class="summary-row">
+            <span>Delivery</span>
+            <span class="green">FREE</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <span id="coTotal">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">VARUN</span>
+        <p>Style That Speaks</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Varun. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
